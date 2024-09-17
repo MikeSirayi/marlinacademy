@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Marlin Academy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('{{ url_for('static', filename='Mathematics.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        header {
+            background-image: url('{{ url_for('static', filename='image2.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            height: 100px;
+            position: relative;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            max-width: 100px;
+            height: auto;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav a {
+            padding: 14px 20px;
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        iframe {
+            max-width: 800px;
+            width: 100%;
+            height: 450px;
+            display: block;
+            margin: 20px auto;
+            border: none;
+        }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 450px; /* Match the height of the iframe */
+            overflow: hidden;
+        }
+
+        .slides-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 1s ease-in-out;
+            /* Adding flex-shrink: 0 to prevent slides from shrinking */
+            flex-shrink: 0;
+        }
+
+        .slide {
+            flex: 0 0 100%; /* Each slide takes up 100% of the container width */
+            box-sizing: border-box;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Animation for continuous scrolling */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .scrolling {
+            animation: scroll 30s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>About Us - Marlin Academy</h1>
+        <img src="{{ url_for('static', filename='logo1.png') }}" class="logo">
+    </header>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/contact">Contact</a>
+    </nav>
+
+    <main>
+        <h2>Welcome to Marlin Academy</h2>
+        <p>Marlin Academy is a place where academic success meets personalized learning. We are dedicated to providing students with the tools they need to excel academically while supporting their individual learning styles and needs.</p>
+        <p>Our approach is centered around nurturing each student’s potential, allowing them to thrive in an environment tailored to their learning pace. We believe in creating a supportive community that fosters growth, confidence, and excellence.</p>
+
+        <!-- Slideshow -->
+        <div class="slideshow-container" id="slideshow">
+            <div class="slides-wrapper scrolling">
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='image.png') }}" alt="Slide 1">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='Mathematics.jpg') }}" alt="Slide 2">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='image2.jpg') }}" alt="Slide 3">
+                </div>
+                <!-- Add more slides as needed -->
+            </div>
+        </div>
+
+        <iframe src="https://www.youtube.com/embed/yCnmKpO1-X4?rel=0" allowfullscreen></iframe>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Marlin Academy. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const slideshow = document.getElementById('slideshow');
+        const slidesWrapper = slideshow.querySelector('.slides-wrapper');
+        const scrollingClass = 'scrolling';
+
+        // Function to start the scrolling animation
+        function startAnimation() {
+            slidesWrapper.classList.add(scrollingClass);
+        }
+
+        // Function to pause the scrolling animation
+        function pauseAnimation() {
+            slidesWrapper.classList.remove(scrollingClass);
+        }
+
+        // Start the animation initially
+        startAnimation();
+
+        // Add event listeners for user interaction
+        slideshow.addEventListener('mouseenter', pauseAnimation);
+        slideshow.addEventListener('mouseleave', startAnimation);
+
+        // Optional: Add touch event support for mobile devices
+        slideshow.addEventListener('touchstart', pauseAnimation);
+        slideshow.addEventListener('touchend', startAnimation);
+    </script>
+
+</body>
+</html>
