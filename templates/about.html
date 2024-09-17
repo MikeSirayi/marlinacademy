@@ -82,23 +82,24 @@
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 450px; /* Match the height of the iframe */
+            height: 400px; /* Adjust height to match image size */
             overflow: hidden;
+            background-color: transparent; /* Ensure background is transparent */
         }
 
         .slides-wrapper {
             display: flex;
-            width: 100%;
+            width: calc(400px * 12 + 5px * 11); /* Enough width to show a continuous loop */
             height: 100%;
-            transition: transform 1s ease-in-out;
-            /* Adding flex-shrink: 0 to prevent slides from shrinking */
-            flex-shrink: 0;
+            transition: transform 1s linear;
         }
 
         .slide {
-            flex: 0 0 100%; /* Each slide takes up 100% of the container width */
+            flex: 0 0 400px; /* Each slide takes up 400px width */
+            height: 400px; /* Set height to 400px */
             box-sizing: border-box;
-            height: 100%;
+            background-color: transparent; /* Make sure slide background is transparent */
+            margin-right: 5px; /* Add 5px gap between slides */
         }
 
         .slide img {
@@ -107,10 +108,10 @@
             object-fit: cover;
         }
 
-        /* Animation for continuous scrolling */
+        /* Keyframes for smooth scrolling */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-66.66%); } /* Adjust to match the total width of slides and gaps */
         }
 
         .scrolling {
@@ -149,7 +150,26 @@
                 <div class="slide">
                     <img src="{{ url_for('static', filename='image2.jpg') }}" alt="Slide 3">
                 </div>
-                <!-- Add more slides as needed -->
+                <!-- Duplicate the slides to enable seamless looping -->
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='image.png') }}" alt="Slide 1">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='Mathematics.jpg') }}" alt="Slide 2">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='image2.jpg') }}" alt="Slide 3">
+                </div>
+                <!-- Repeat to ensure seamless looping -->
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='image.png') }}" alt="Slide 1">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='Mathematics.jpg') }}" alt="Slide 2">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='image2.jpg') }}" alt="Slide 3">
+                </div>
             </div>
         </div>
 
